@@ -94,6 +94,10 @@ body {
   html {
     font-size: 36%;
   }
+
+  .main {
+    padding: 40rem 0;
+  }
 }
 /*
 ### Font sizes
