@@ -83,7 +83,7 @@ body {
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
 }
 .card--flip {
   color: #0c4a6e;
