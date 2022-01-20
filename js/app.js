@@ -94,7 +94,7 @@ function flipCard() {
   cardsChosen.push({ id: cardId, name: gameData[cardId].name });
   console.log(cardId);
   if (cardsChosen.length === 2) {
-    checkForMatch();
+    setTimeout(checkForMatch, 300);
   }
 }
 
