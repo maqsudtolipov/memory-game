@@ -52,12 +52,15 @@ const gameData = [
   },
 ];
 
+gameData.sort(() => Math.random() - 0.5);
+
 const grid = document.getElementById('grid');
 
 // create game board
 const createBoard = function () {
   for (let i = 0; i < gameData.length; i++) {
-    const card = `<div class="card"><ion-icon name="${gameData[i].name}"></ion-icon></div>`;
+    gameData[i].id = i;
+    const card = `<div class="card" data-id="${i}"><ion-icon name="${gameData[i].name}"></ion-icon></div>`;
     grid.insertAdjacentHTML('beforeend', card);
     // grid[i].addEventListener('click', flipCard);
   }
@@ -65,15 +68,36 @@ const createBoard = function () {
 
 createBoard();
 
-const cardsEls = document.querySelectorAll('.card');
+const cards = document.querySelectorAll('.card');
+let cardsChosen = [];
+let cardsWon = 0;
 
-cardsEls.forEach((card) => {
-  card.addEventListener('click', () => {
-    card.classList.toggle('card--flip');
-  });
+function checkForMatch() {
+  if (cardsChosen[0].name === cardsChosen[1].name) {
+    alert('You found a match!');
+    cards[cardsChosen[0].id].removeEventListener('click', flipCard);
+    cards[cardsChosen[1].id].removeEventListener('click', flipCard);
+    cardsWon += 2;
+  } else {
+    cards[cardsChosen[0].id].classList.remove('card--flip');
+    cards[cardsChosen[1].id].classList.remove('card--flip');
+  }
+  cardsChosen = [];
+  if (cardsWon === gameData.length) {
+    alert('You found them all!');
+  }
+}
+
+function flipCard() {
+  const cardId = this.getAttribute('data-id');
+  this.classList.add('card--flip');
+  cardsChosen.push({ id: cardId, name: gameData[cardId].name });
+  console.log(cardId);
+  if (cardsChosen.length === 2) {
+    setTimeout(checkForMatch, 500);
+  }
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', flipCard);
 });
-
-// flip card
-// function flipCard() {
-//   console.log('flip card');
-// }
