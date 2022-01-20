@@ -74,7 +74,7 @@ let cardsWon = 0;
 
 function checkForMatch() {
   if (cardsChosen[0].name === cardsChosen[1].name) {
-    alert('You found a match!');
+    // alert('You found a match!');
     cards[cardsChosen[0].id].removeEventListener('click', flipCard);
     cards[cardsChosen[1].id].removeEventListener('click', flipCard);
     cardsWon += 2;
