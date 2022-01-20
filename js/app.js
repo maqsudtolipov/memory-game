@@ -94,7 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     cardsChosen.push({ id: cardId, name: gameData[cardId].name });
     console.log(cardId);
     if (cardsChosen.length === 2) {
-      setTimeout(checkForMatch, 500);
+      setTimeout(checkForMatch, 300);
+      // checkForMatch();
     }
   }
 
