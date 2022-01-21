@@ -1,5 +1,5 @@
 'use strict';
-// memory game
+prompt('Use anync function to fix the bug')
 
 const gameData = [
   {
